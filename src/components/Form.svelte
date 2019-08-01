@@ -1,30 +1,80 @@
 <script>
-  export let codiceFiscaleError = "";
-  export let numeroOrdineError = "";
+  import { sendData } from "../services/Api.js";
+  import {
+    validateOrderNumber,
+    validateField
+  } from "../services/Validation.js";
 
-  const handleSubmit = event => {
-    const numeroOrdine = event.target["numero-ordine"].value;
-    const codiceFiscale = event.target["codice-fiscale"].value;
+  const initialUiErrors = {
+    numeroOrdine: "",
+    codiceFiscale: ""
+  };
 
-    if (
-      !codiceFiscale.match(
-        /^(?:[A-Z][AEIOU][AEIOUX]|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[15MR][\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]$/i
-      )
-    ) {
-      codiceFiscaleError = "Non un codice fiscale";
-      return;
-    }
+  export let uiErrors = {
+    ...initialUiErrors
+  };
 
-    console.log(numeroOrdine, codiceFiscale);
+  export let isValid = true;
+
+  const mapFieldToErrors = (field, error) => {
+    uiErrors = {
+      ...uiErrors,
+      [field]: error
+    };
+  };
+
+  const handleSubmit = async event => {
+    isValid = true;
+    const numeroOrdine = event.target["numeroOrdine"].value;
+    const codiceFiscale = event.target["codiceFiscale"].value;
+
+    mapFieldToErrors(
+      "numeroOrdine",
+      validateField("numeroOrdine", numeroOrdine)
+    );
+
+    mapFieldToErrors(
+      "codiceFiscale",
+      validateField("codiceFiscale", codiceFiscale)
+    );
+
+    Object.keys(uiErrors).forEach(key => {
+      if (uiErrors[key] !== "") isValid = false;
+    });
+
+    if (!isValid) return;
+
+    const datiOrdini = await sendData(numeroOrdine, codiceFiscale);
+
+    console.log(datiOrdini);
+  };
+
+  const handleChange = event => {
+    mapFieldToErrors(event.target.id, "");
+  };
+
+  const handleBlur = event => {
+    mapFieldToErrors(
+      event.target.id,
+      validateField(event.target.id, event.target.value)
+    );
   };
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
   <label for="numero-ordine">Numero Ordine</label>
-  <input type="number" id="numero-ordine" required />
-  <span>{numeroOrdineError}</span>
+  <input
+    type="text"
+    id="numeroOrdine"
+    on:input={handleChange}
+    on:change={handleBlur} />
+  <span>{uiErrors.numeroOrdine}</span>
   <label for="codice-fiscale">Codice Fiscale</label>
-  <input type="text" id="codice-fiscale" required />
-  <span>{codiceFiscaleError}</span>
+  <input
+    type="text"
+    id="codiceFiscale"
+    on:input={handleChange}
+    on:change={handleBlur} />
+  <span>{uiErrors.codiceFiscale}</span>
   <button type="submit">Cerca il tuo ordine</button>
 </form>
