@@ -12,5 +12,5 @@ export const errors = {
     nonValid:
       'Inserisci il codice fiscale con cui hai effettuato il tuo ordine, per favore'
   },
-  general: ''
+  general: "C'è stato un errore, ricarica la pagina per favore."
 };

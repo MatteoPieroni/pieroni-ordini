@@ -48,10 +48,7 @@
     } catch (e) {
       console.log(e);
 
-      uiErrors = {
-        ...uiErrors,
-        general: "C'è stato un errore, ricarica la pagina per favore."
-      };
+      mapFieldToErrors("general", errors.general);
     }
     isLoading = false;
 
@@ -82,14 +79,14 @@
     id={formFields.numeroOrdine}
     on:input={handleChange}
     on:change={handleBlur} />
-  <span>{uiErrors.numeroOrdine}</span>
+  <p>{uiErrors.numeroOrdine}</p>
   <label for={formFields.codiceFiscale}>Codice Fiscale</label>
   <input
     type="text"
     id={formFields.codiceFiscale}
     on:input={handleChange}
     on:change={handleBlur} />
-  <span>{uiErrors.codiceFiscale}</span>
+  <p>{uiErrors.codiceFiscale}</p>
   {#if isLoading}
     <p>Stiamo cercando...</p>
   {:else}
