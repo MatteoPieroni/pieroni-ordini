@@ -1,9 +1,13 @@
 <script>
-  import { fields } from "../constants.js";
+  import { fields, errors } from "../constants.js";
   import { sendData } from "../services/Api.js";
   import { validateField } from "../services/Validation.js";
+  import { createEventDispatcher } from "svelte";
 
-  export let formFields = fields;
+  export let isOrderShown;
+
+  let formFields = fields;
+  const dispatch = createEventDispatcher();
 
   const initialUiErrors = {
     numeroOrdine: "",
@@ -11,12 +15,12 @@
     general: ""
   };
 
-  export let data = {};
-  export let uiErrors = {
+  let data = {};
+  let uiErrors = {
     ...initialUiErrors
   };
-  export let isValid = true;
-  export let isLoading = false;
+  let isValid = true;
+  let isLoading = false;
 
   const mapFieldToErrors = (field, error) => {
     uiErrors = {
@@ -45,14 +49,12 @@
     isLoading = true;
     try {
       data = await sendData(numeroOrdine, codiceFiscale);
+      dispatch("formSubmitted", data);
     } catch (e) {
       console.log(e);
-
       mapFieldToErrors("general", errors.general);
     }
     isLoading = false;
-
-    console.log(data);
   };
 
   const handleChange = event => {
@@ -65,32 +67,44 @@
       validateField(event.target.id, event.target.value)
     );
   };
+
+  const resetOrder = () => {
+    dispatch("resetOrder", {});
+  };
 </script>
 
-<form on:submit|preventDefault={handleSubmit}>
+<form on:submit|preventDefault={handleSubmit} disabled={isOrderShown}>
   <h2>Controlla lo stato del tuo ordine</h2>
-  <p>
-    Inserisci i dati del tuo ordine nel form per visualizzare lo stato dei
-    singoli componenti
-  </p>
+  {#if !isOrderShown}
+    <p>
+      Inserisci i dati del tuo ordine nel form per visualizzare lo stato dei
+      singoli componenti
+    </p>
+  {/if}
   <label for={formFields.numeroOrdine}>Numero Ordine</label>
   <input
     type="text"
     id={formFields.numeroOrdine}
     on:input={handleChange}
-    on:change={handleBlur} />
+    on:change={handleBlur}
+    disabled={isOrderShown} />
   <p>{uiErrors.numeroOrdine}</p>
-  <label for={formFields.codiceFiscale}>Codice Fiscale</label>
-  <input
-    type="text"
-    id={formFields.codiceFiscale}
-    on:input={handleChange}
-    on:change={handleBlur} />
-  <p>{uiErrors.codiceFiscale}</p>
-  {#if isLoading}
-    <p>Stiamo cercando...</p>
-  {:else}
-    <button type="submit">Cerca il tuo ordine</button>
+  {#if !isOrderShown}
+    <label for={formFields.codiceFiscale}>Codice Fiscale</label>
+    <input
+      type="text"
+      id={formFields.codiceFiscale}
+      on:input={handleChange}
+      on:change={handleBlur} />
+    <p>{uiErrors.codiceFiscale}</p>
+    {#if isLoading}
+      <p>Stiamo cercando...</p>
+    {:else}
+      <button type="submit">Cerca il tuo ordine</button>
+    {/if}
+    <p aria-live="polite">{uiErrors.general}</p>
   {/if}
-  <p aria-live="polite">{uiErrors.general}</p>
 </form>
+{#if isOrderShown}
+  <button on:click={resetOrder}>Cerca un altro ordine</button>
+{/if}

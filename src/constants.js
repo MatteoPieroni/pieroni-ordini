@@ -14,3 +14,11 @@ export const errors = {
   },
   general: "C'è stato un errore, ricarica la pagina per favore."
 };
+
+export const statuses = {
+  0: 'Da Ordinare al Fornitore',
+  1: 'Ordinato al Fornitore',
+  2: 'Arrivato al nostro Magazzino',
+  3: 'In Preparazione',
+  4: 'In Consegna'
+};
