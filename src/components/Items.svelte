@@ -9,8 +9,15 @@
     grid-template-columns: 1fr;
     grid-row-gap: 1rem;
     grid-column-gap: 1rem;
-    margin: 0 auto;
-    max-width: 1200px;
+  }
+
+  .item {
+    position: relative;
+    margin: 0rem auto 0 auto;
+    width: 90vw;
+    background: #fff;
+    box-shadow: 0 1px 10px -6px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
   }
 
   @media (min-width: 768px) {
@@ -34,7 +41,7 @@
 
 <ul class="container">
   {#each orderData.righe as item}
-    <li class="item" id="item">
+    <li class="item">
       <SingleItem orderItem={item} />
     </li>
   {/each}

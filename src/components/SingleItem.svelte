@@ -3,32 +3,29 @@
   export let orderItem;
 
   const { articolo, descrizione, stato, dataOrdine, dataConsegna } = orderItem;
-
-  /*"articolo": "605485",
-            "descrizione": "WALK GRIGIO CHIARO 60X60 GARDENIA",
-            "stato": "1",
-            "dataOrdine": "2019-07-23",
-            "dataConsegna": "2019-08-09"
-*/
+  const descrizioneLowerCase = descrizione.toLowerCase();
 </script>
 
 <style>
   .card {
-    box-shadow: 0px 1px 10px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+    box-shadow: 0px 1px 10px -6px rgba(0, 0, 0, 0.5);
   }
 
   .header {
+    border-bottom: 1px solid rgba(227, 227, 227, 0.77);
     padding: 1rem;
   }
 
-  h3 {
+  .title {
     margin: 0;
+    text-transform: capitalize;
   }
 </style>
 
 <div class="card">
   <div class="header">
-    <h3>{descrizione}</h3>
+    <h3 class="title">{descrizioneLowerCase}</h3>
     <p>#{articolo}</p>
     <p>{dataConsegna}</p>
   </div>
