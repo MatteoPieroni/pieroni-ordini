@@ -13,6 +13,7 @@
     font-size: 1rem;
     color: #fff;
     text-align: center;
+    text-transform: uppercase;
     @media (min-width: 1024px) {
       font-size: 2.5rem;
     }
@@ -35,10 +36,8 @@
 </style>
 
 <header>
-
   <h1>Il tuo ordine Pieroni</h1>
 </header>
 <div class="sub-header">
   <Truck />
-
 </div>

@@ -6,7 +6,7 @@
   const toggle = () => (isExpanded = !isExpanded);
 </script>
 
-<style>
+<style type="text/scss">
   .status-list {
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
@@ -45,53 +45,83 @@
     width: 2px;
     position: absolute;
     top: calc(1rem + 4.5px);
-    background: #8d8d8d;
+    background: #cfcece;
     bottom: calc(1rem + 4.5px);
-    left: calc(1rem + 3.5px);
+    left: calc(1rem + 6.5px);
     opacity: 0;
     transition: opacity 0.25s ease-in-out;
-  }
-
-  .status-single.active {
-    padding: 0.5rem 1rem;
-    height: 1.5rem;
-  }
-
-  .status-single.active .icon {
-    background: green;
   }
 
   .icon {
     position: relative;
     display: inline-block;
-    width: 5px;
-    height: 5px;
-    background: #8d8d8d;
+    width: 10px;
+    height: 10px;
+    background: #cfcece;
     margin-right: 0.5rem;
     border-radius: 50%;
     padding: 2.5px;
+    top: 1.5px;
     vertical-align: baseline;
   }
 
-  .status-list.expanded .status-single {
+  .status-single.done {
+    &:before {
+      background: #4c78b7;
+    }
+    .icon {
+      background: #4c78b7;
+    }
+  }
+
+  .status-single.active {
     padding: 0.5rem 1rem;
     height: 1.5rem;
+    &:before {
+      background: rgb(76, 120, 183);
+      background: linear-gradient(
+        180deg,
+        rgba(76, 120, 183, 1) 0%,
+        rgba(76, 120, 183, 1) 49%,
+        #cfcece 50%
+      );
+    }
+    .icon {
+      background: #182c66;
+    }
   }
 
-  .status-list.expanded .status-single:before {
-    display: block;
-    top: 0;
-    bottom: 0;
-    opacity: 1;
-    transition: opacity 0.25s ease-in-out;
-  }
+  .status-list.expanded {
+    background: #fff;
 
-  .status-list.expanded .status-single:first-child:before {
-    top: calc(1rem + 4.5px);
-  }
+    .status-single {
+      padding: 0.5rem 1rem;
+      height: 1.5rem;
+    }
 
-  .status-list.expanded .status-single:last-child:before {
-    bottom: calc(1rem + 4.5px);
+    .status-single:before {
+      display: block;
+      top: 0;
+      bottom: 0;
+      opacity: 1;
+      transition: opacity 0.25s ease-in-out;
+    }
+
+    .status-single:first-child:before {
+      top: calc(1rem + 4.5px);
+    }
+
+    .status-single:last-child:before {
+      bottom: calc(1rem + 4.5px);
+    }
+
+    .status-single.active {
+      font-weight: bold;
+    }
+
+    .status-single.active .icon {
+      animation: pulse 2s infinite;
+    }
   }
 
   @keyframes appear {
@@ -109,6 +139,32 @@
       display: none;
     }
   }
+
+  @-webkit-keyframes pulse {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(24, 44, 102, 0.4);
+    }
+    70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(24, 44, 102, 0);
+    }
+    100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(24, 44, 102, 0);
+    }
+  }
+  @keyframes pulse {
+    0% {
+      -moz-box-shadow: 0 0 0 0 rgba(24, 44, 102, 0.4);
+      box-shadow: 0 0 0 0 rgba(24, 44, 102, 0.4);
+    }
+    70% {
+      -moz-box-shadow: 0 0 0 10px rgba(24, 44, 102, 0);
+      box-shadow: 0 0 0 10px rgba(24, 44, 102, 0);
+    }
+    100% {
+      -moz-box-shadow: 0 0 0 0 rgba(24, 44, 102, 0);
+      box-shadow: 0 0 0 0 rgba(24, 44, 102, 0);
+    }
+  }
 </style>
 
 <div class="status">
@@ -118,7 +174,8 @@
     role="button"
     on:click={toggle}>
     {#each Object.keys(statuses) as statusId}
-      <li class={`status-single ${currentStatus === statusId ? 'active' : ''}`}>
+      <li
+        class={`status-single ${currentStatus > statusId ? 'done' : ''} ${currentStatus === statusId ? 'active' : ''}`}>
         <span class="icon" />
         {statuses[statusId]}
       </li>

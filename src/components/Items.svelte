@@ -1,4 +1,5 @@
 <script>
+  import { fly } from "svelte/transition";
   import SingleItem from "./SingleItem.svelte";
   export let orderData;
 </script>
@@ -40,8 +41,10 @@
 </style>
 
 <ul class="container">
-  {#each orderData.righe as item}
-    <li class="item">
+  {#each orderData.righe as item, index}
+    <li
+      class="item"
+      transition:fly={{ x: 200, duration: 300, delay: 100 * index }}>
       <SingleItem orderItem={item} />
     </li>
   {/each}
