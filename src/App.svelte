@@ -12,7 +12,7 @@
     data = {};
   };
 
-  /*data = {
+  data = {
     sezordine: "5",
     numordine: "16770",
     righe: [
@@ -52,7 +52,7 @@
         dataConsegna: "2019-08-09"
       }
     ]
-  };*/
+  };
 </script>
 
 <style type="text/scss">
@@ -77,13 +77,9 @@
     margin: 0 auto;
     border-radius: 3px;
     padding: 0;
-    max-width: 450px;
     overflow-x: hidden;
 
     @media (min-width: 768px) {
-      top: 50%;
-      padding: 2rem;
-      transform: translateY(-50%);
     }
   }
 
@@ -98,7 +94,9 @@
   }
 
   .data-container {
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem auto;
+    width: 90vw;
+    box-sizing: border-box;
   }
 </style>
 

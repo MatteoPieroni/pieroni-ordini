@@ -1,6 +1,6 @@
 <script>
   import { formatDate } from "../services/Dates";
-  import Statuses from "./Statuses.svelte";
+  import StatusesDesktop from "./StatusesDesktop.svelte";
   export let orderItem;
 
   const { articolo, descrizione, stato, dataOrdine, dataConsegna } = orderItem;
@@ -8,10 +8,14 @@
   const formattedDate = formatDate(dataConsegna);
 </script>
 
-<style>
+<style type="text/scss">
   .card {
+    display: none;
     border-radius: 3px;
     box-shadow: 0px 1px 10px -6px rgba(0, 0, 0, 0.5);
+    @media (min-width: 1024px) {
+      display: block;
+    }
   }
 
   .header {
@@ -41,14 +45,9 @@
   }
 </style>
 
-<div class="card">
-  <div class="header">
-    <h3 class="title">{descrizioneLowerCase}</h3>
-    <p class="article-number">#{articolo}</p>
-    <p class="delivery-date">
-      Consegna prevista
-      <strong>{formattedDate}</strong>
-    </p>
-  </div>
-  <Statuses currentStatus={stato} />
-</div>
+<tr class="row">
+  <td>{descrizioneLowerCase}</td>
+  <td>#{articolo}</td>
+  <td>{formattedDate}</td>
+  <StatusesDesktop currentStatus={stato} />
+</tr>
