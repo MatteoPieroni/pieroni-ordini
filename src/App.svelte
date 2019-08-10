@@ -91,12 +91,20 @@
     background: #fff;
     box-shadow: 0 1px 10px -6px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
+
+    @media (min-width: 768px) {
+      max-width: 450px;
+    }
   }
 
   .data-container {
     margin: 0 auto 2rem auto;
     width: 90vw;
     box-sizing: border-box;
+
+    @media (min-width: 768px) {
+      max-width: 920px;
+    }
   }
 </style>
 

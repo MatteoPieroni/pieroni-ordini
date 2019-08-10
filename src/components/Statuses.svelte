@@ -37,6 +37,9 @@
     height: 0;
     overflow: hidden;
     transition: all 0.5s ease;
+    @media (min-width: 1024px) {
+      transition: none;
+    }
   }
 
   .status-single:before {
@@ -50,6 +53,9 @@
     left: calc(1rem + 6.5px);
     opacity: 0;
     transition: opacity 0.25s ease-in-out;
+    @media (min-width: 1024px) {
+      transition: none;
+    }
   }
 
   .icon {
@@ -85,6 +91,15 @@
         rgba(76, 120, 183, 1) 49%,
         #cfcece 50%
       );
+
+      @media (min-width: 1024px) {
+        background: linear-gradient(
+          90deg,
+          #4c78b7 0%,
+          #4c78b7 calc(2rem + 5px),
+          #cfcece calc(2rem + 5.1px)
+        );
+      }
     }
     .icon {
       background: #182c66;
@@ -94,9 +109,29 @@
   .status-list.expanded {
     background: #fff;
 
+    @media (min-width: 1024px) {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
     .status-single {
       padding: 0.5rem 1rem;
       height: 1.5rem;
+
+      @media (min-width: 1024px) {
+        padding: 1rem;
+        height: auto;
+        overflow: visible;
+      }
+    }
+
+    .status-single .icon {
+      @media (min-width: 1024px) {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
     }
 
     .status-single:before {
@@ -105,18 +140,44 @@
       bottom: 0;
       opacity: 1;
       transition: opacity 0.25s ease-in-out;
+
+      @media (min-width: 1024px) {
+        top: calc(1.5rem + 0.5px);
+        bottom: unset;
+        left: -1rem;
+        right: -1rem;
+        width: unset;
+        height: 2px;
+      }
     }
 
     .status-single:first-child:before {
       top: calc(1rem + 4.5px);
+      @media (min-width: 1024px) {
+        top: calc(1.5rem + 0.5px);
+        left: calc(1rem + 5px);
+      }
     }
 
     .status-single:last-child:before {
       bottom: calc(1rem + 4.5px);
+      @media (min-width: 1024px) {
+        right: calc(100% - 1rem - 5px);
+      }
     }
 
     .status-single.active {
       font-weight: bold;
+      &:first-child:before {
+        @media (min-width: 1024px) {
+          background: linear-gradient(
+            90deg,
+            #4c78b7 0%,
+            #4c78b7 0.5px,
+            #cfcece 1px
+          );
+        }
+      }
     }
 
     .status-single.active .icon {

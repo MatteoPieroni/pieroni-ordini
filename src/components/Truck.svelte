@@ -2,11 +2,15 @@
 
 </script>
 
-<style>
+<style type="text/scss">
   svg {
     max-width: 50vw;
     margin: 0 auto;
     display: block;
+
+    @media (min-width: 768px) {
+      max-width: 250px;
+    }
   }
 </style>
 
