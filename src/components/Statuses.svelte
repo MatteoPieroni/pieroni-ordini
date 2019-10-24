@@ -1,4 +1,5 @@
 <script>
+  import Chevron from "./Chevron.svelte";
   import { statuses } from "../constants";
   export let currentStatus;
   let isExpanded = false;
@@ -8,6 +9,7 @@
 
 <style type="text/scss">
   .status-list {
+    position: relative;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
     padding: 0.5rem 0;
@@ -69,6 +71,14 @@
     padding: 2.5px;
     top: 1.5px;
     vertical-align: baseline;
+  }
+
+  .icon-open {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    width: 1rem;
+    transform: translateY(-50%);
   }
 
   .status-single.done {
@@ -159,7 +169,7 @@
       }
     }
 
-    .status-single:last-child:before {
+    .status-single:last-of-type:before {
       bottom: calc(1rem + 4.5px);
       @media (min-width: 1024px) {
         right: calc(100% - 1rem - 5px);
@@ -182,6 +192,10 @@
 
     .status-single.active .icon {
       animation: pulse 2s infinite;
+    }
+
+    .icon-open {
+      transform: translateY(-105%) rotate(0.5turn);
     }
   }
 
@@ -241,5 +255,8 @@
         {statuses[statusId]}
       </li>
     {/each}
+    <span class="icon-open">
+      <Chevron />
+    </span>
   </ul>
 </div>
