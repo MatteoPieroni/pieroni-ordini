@@ -1,7 +1,3 @@
-<script>
-
-</script>
-
 <style type="text/scss">
   svg {
     max-width: 50vw;

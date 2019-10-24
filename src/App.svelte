@@ -59,7 +59,19 @@
   @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap");
   :global(body) {
     padding-bottom: 2rem;
-    background: #fafafa;
+    min-height: 100vh;
+    background: rgba(76, 120, 183, 1);
+    background: -o-radial-gradient(
+      50.7% 60.5%,
+      circle 760px,
+      rgba(76, 120, 183, 1) 0%,
+      rgba(34, 70, 122, 1) 90%
+    );
+    background: radial-gradient(
+      circle 760px at 50.7% 60.5%,
+      rgba(76, 120, 183, 1) 0%,
+      rgba(34, 70, 122, 1) 90%
+    );
     font-family: "Source Sans Pro", HelveticaNeue-Light, "Helvetica Neue Light",
       "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 400;
@@ -85,15 +97,13 @@
 
   .form-container {
     position: relative;
-    margin: -2rem auto 0 auto;
-    padding: 1rem;
+    margin: 0 auto 0 auto;
+    padding: 2rem 0 0;
     width: 90vw;
-    background: #fff;
-    box-shadow: 0 1px 10px -6px rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
 
     @media (min-width: 768px) {
-      max-width: 450px;
+      max-width: 920px;
     }
   }
 

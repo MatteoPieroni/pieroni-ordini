@@ -1,4 +1,5 @@
 <script>
+  import Truck from "./Truck.svelte";
   import { createEventDispatcher } from "svelte";
   import { fields, errors } from "../constants.js";
   import { sendData } from "../services/Api.js";
@@ -73,10 +74,39 @@
   };
 </script>
 
-<style>
+<style type="text/scss">
+  .sub-header {
+    @media (min-width: 768px) {
+      display: flex;
+      flex-direction: row-reverse;
+      padding: 2rem 0;
+    }
+  }
   h2 {
     margin-top: 0;
   }
+
+  .truck {
+    margin-bottom: 1rem;
+    @media (min-width: 768px) {
+      margin-left: 5%;
+      width: 35%;
+    }
+  }
+
+  .form {
+    color: #fff;
+    @media (min-width: 768px) {
+      width: 60%;
+    }
+  }
+
+  form {
+    padding: 1rem;
+    background: #fff;
+    color: #000;
+  }
+
   .input-container {
     margin-bottom: 1rem;
   }
@@ -116,6 +146,10 @@
     color: #fff;
   }
 
+  .reset-container {
+    padding: 1rem 0;
+  }
+
   .order-number {
     margin-bottom: 0;
   }
@@ -124,6 +158,7 @@
     border: none;
     padding-left: 0;
     background: none;
+    color: #fff;
     text-transform: uppercase;
     text-decoration: underline;
     cursor: pointer;
@@ -134,43 +169,50 @@
   }
 </style>
 
-{#if !numOrdine}
-  <form on:submit|preventDefault={handleSubmit}>
-    <h2>Controlla lo stato del tuo ordine</h2>
-    <p>
-      Inserisci i dati del tuo ordine nel form per visualizzare lo stato dei
-      singoli componenti
-    </p>
-    <div class="input-container">
-      <label for={formFields.numeroOrdine}>Numero Ordine</label>
-      <input
-        type="text"
-        id={formFields.numeroOrdine}
-        on:input={handleChange}
-        on:change={handleBlur} />
-      <p class="error" aria-live="polite">{uiErrors.numeroOrdine}</p>
-    </div>
-    <div class="input-container">
-      <label for={formFields.codiceFiscale}>Codice Fiscale</label>
-      <input
-        type="text"
-        id={formFields.codiceFiscale}
-        on:input={handleChange}
-        on:change={handleBlur} />
-      <p class="error" aria-live="polite">{uiErrors.codiceFiscale}</p>
-    </div>
-    {#if isLoading}
-      <p aria-live="polite">Stiamo cercando...</p>
-    {:else}
-      <button type="submit">Cerca il tuo ordine</button>
-    {/if}
-    <p aria-live="polite">{uiErrors.general}</p>
-  </form>
-{:else}
-  <div>
-    <h2 class="order-number">Ordine #{numOrdine}</h2>
-    <button class="reset-button" on:click={resetOrder} aria-label="">
-      Cerca un altro ordine
-    </button>
+<div class="sub-header">
+  <div class="truck">
+    <Truck />
   </div>
-{/if}
+  <div class="form">
+    {#if !numOrdine}
+      <form on:submit|preventDefault={handleSubmit}>
+        <h2>Controlla lo stato del tuo ordine</h2>
+        <p>
+          Inserisci i dati del tuo ordine nel form per visualizzare lo stato dei
+          singoli componenti
+        </p>
+        <div class="input-container">
+          <label for={formFields.numeroOrdine}>Numero Ordine</label>
+          <input
+            type="text"
+            id={formFields.numeroOrdine}
+            on:input={handleChange}
+            on:change={handleBlur} />
+          <p class="error" aria-live="polite">{uiErrors.numeroOrdine}</p>
+        </div>
+        <div class="input-container">
+          <label for={formFields.codiceFiscale}>Codice Fiscale</label>
+          <input
+            type="text"
+            id={formFields.codiceFiscale}
+            on:input={handleChange}
+            on:change={handleBlur} />
+          <p class="error" aria-live="polite">{uiErrors.codiceFiscale}</p>
+        </div>
+        {#if isLoading}
+          <p aria-live="polite">Stiamo cercando...</p>
+        {:else}
+          <button type="submit">Cerca il tuo ordine</button>
+        {/if}
+        <p aria-live="polite">{uiErrors.general}</p>
+      </form>
+    {:else}
+      <div class="reset-container">
+        <h2 class="order-number">Ordine #{numOrdine}</h2>
+        <button class="reset-button" on:click={resetOrder} aria-label="">
+          Cerca un altro ordine
+        </button>
+      </div>
+    {/if}
+  </div>
+</div>
