@@ -1,5 +1,5 @@
 const headers = new Headers({
-  [`${API_HEADER}`]: API_KEY
+  [`${API_HEADER}`]: `${API_KEY}`
 });
 
 export const sendData = async (numOrdine, codiceFiscale) => {
