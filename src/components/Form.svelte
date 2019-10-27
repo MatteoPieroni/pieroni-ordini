@@ -64,6 +64,14 @@
     mapFieldToErrors(event.target.id, "");
   };
 
+  const handleNumberChange = event => {
+    const { value } = event.target;
+    mapFieldToErrors(event.target.id, "");
+    const nonDigitCharacters = new RegExp(/\D/g);
+    const sanitisedValue = value.replace(nonDigitCharacters, "");
+    event.target.value = sanitisedValue;
+  };
+
   const handleBlur = event => {
     mapFieldToErrors(
       event.target.id,
@@ -188,7 +196,7 @@
           <input
             type="text"
             id={formFields.numeroOrdine}
-            on:input={handleChange}
+            on:input={handleNumberChange}
             on:change={handleBlur} />
           <p class="error" aria-live="polite">{uiErrors.numeroOrdine}</p>
         </div>
