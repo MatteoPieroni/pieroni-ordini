@@ -195,7 +195,11 @@
     }
 
     .icon-open {
+      top: 95%;
       transform: translateY(-105%) rotate(0.5turn);
+      @media (min-width: 1024px) {
+        top: 50%;
+      }
     }
   }
 

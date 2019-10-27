@@ -1,15 +1,21 @@
-import { url, apiKey } from '../apiConstants';
+const { API_URL, API_HEADER, API_KEY } = process.env;
+
+const headers = new Headers({
+  [API_HEADER]: API_KEY
+});
 
 export const sendData = async (numOrdine, codiceFiscale) => {
   let data;
 
   const response = await fetch(
-    `${url}?code=${apiKey}&NumOrdine=${numOrdine}&CodiceFiscale=${codiceFiscale}`
+    `${API_URL}?NumOrdine=${numOrdine}&CodiceFiscale=${codiceFiscale}`,
+    {
+      headers: headers
+    }
   );
 
   try {
-    console.log(response.body);
-    data = JSON.parse(response.body);
+    data = await response.json();
   } catch (e) {
     console.log(e);
     data = response;

@@ -5,53 +5,11 @@
   export let data = {};
 
   const showData = event => {
-    data = event.detail;
+    data = event.detail && event.detail.order;
   };
 
   const resetView = () => {
     data = {};
-  };
-
-  data = {
-    sezordine: "5",
-    numordine: "16770",
-    righe: [
-      {
-        articolo: "605485",
-        descrizione: "WALK GRIGIO CHIARO 60X60 GARDENIA",
-        stato: "1",
-        dataOrdine: "2019-07-23",
-        dataConsegna: "2019-08-09"
-      },
-      {
-        articolo: "0034",
-        descrizione: "LAVORAZIONE BATTISCOPA 8X60",
-        stato: "0",
-        dataOrdine: "2019-07-23",
-        dataConsegna: "2019-08-09"
-      },
-      {
-        articolo: "181032",
-        descrizione: "ATELIER GESSO RETT 20X120 CISA",
-        stato: "3",
-        dataOrdine: "2019-07-23",
-        dataConsegna: "2019-08-09"
-      },
-      {
-        articolo: "168918",
-        descrizione: "EMOTION WALL GRIGIO 20X60 LA FENICE",
-        stato: "1",
-        dataOrdine: "2019-07-23",
-        dataConsegna: "2019-08-09"
-      },
-      {
-        articolo: "640563",
-        descrizione: "TRAVERTINO LISTELLO GRIGIO 20X45",
-        stato: "1",
-        dataOrdine: "2019-07-23",
-        dataConsegna: "2019-08-09"
-      }
-    ]
   };
 </script>
 

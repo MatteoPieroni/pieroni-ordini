@@ -32,6 +32,10 @@
 </style>
 
 <header>
-  <Logo />
-  <h1>Il tuo ordine Pieroni</h1>
+  <a href="/">
+    <h1>Il tuo ordine Pieroni</h1>
+  </a>
+  <a href="https://www.pieroni.it">
+    <Logo />
+  </a>
 </header>
