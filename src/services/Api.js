@@ -1,5 +1,5 @@
 const headers = new Headers({
-  [process.env.API_HEADER]: process.env.API_KEY
+  [`${process.env.API_HEADER}`]: process.env.API_KEY
 });
 
 export const sendData = async (numOrdine, codiceFiscale) => {
