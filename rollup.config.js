@@ -1,6 +1,7 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import replace from 'rollup-plugin-replace';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import { sass } from 'svelte-preprocess-sass';
@@ -16,6 +17,11 @@ export default {
     file: 'public/bundle.js'
   },
   plugins: [
+    replace({
+      'process.env.API_KEY': process.env.API_KEY,
+      'process.env.API_URL': process.env.API_URL,
+      'process.env.API_HEADER': process.env.API_HEADER
+    }),
     svelte({
       // enable run-time checks when not in production
       dev: !production,
