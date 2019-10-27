@@ -18,9 +18,9 @@ export default {
   },
   plugins: [
     replace({
-      'process.env.API_KEY': process.env.API_KEY,
-      'process.env.API_URL': process.env.API_URL,
-      'process.env.API_HEADER': process.env.API_HEADER
+      API_KEY: process.env.API_KEY,
+      API_URL: process.env.API_URL,
+      API_HEADER: process.env.API_HEADER
     }),
     svelte({
       // enable run-time checks when not in production
