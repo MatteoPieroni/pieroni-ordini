@@ -9,6 +9,6 @@ export const sendData = async (numOrdine, codiceFiscale) => {
       headers: headers
     }
   );
-  data = await response.json();
+  const data = await response.json();
   return data;
 };
