@@ -33,6 +33,7 @@
   const handleSubmit = async event => {
     isValid = true;
     const formFields = event.target.elements;
+
     for (let i = 0; i < formFields.length; i++) {
       if (formFields[i].tagName === "INPUT")
         mapFieldToErrors(
@@ -48,8 +49,9 @@
     if (!isValid) return;
 
     isLoading = true;
+
     try {
-      data = await sendData(numeroOrdine, codiceFiscale);
+      data = await sendData(formFields[0].value, formFields[1].value);
       dispatch("formSubmitted", data);
     } catch (e) {
       console.log(e);
