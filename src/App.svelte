@@ -76,6 +76,95 @@
   }
 </style>
 
+<svelte:head>
+  <title>Stato Ordine - Pieroni srl</title>
+  <link rel="shortlink" href="https://ordini.pieroni.it/" />
+  <!-- Icons & Favicons -->
+  <link
+    rel="apple-touch-icon"
+    sizes="57x57"
+    href="https://ordini.pieroni.it/apple-touch-icon-57x57.png?v=kPPr57pW7z" />
+  <link
+    rel="apple-touch-icon"
+    sizes="60x60"
+    href="https://ordini.pieroni.it/apple-touch-icon-60x60.png?v=kPPr57pW7z" />
+  <link
+    rel="apple-touch-icon"
+    sizes="72x72"
+    href="https://ordini.pieroni.it/apple-touch-icon-72x72.png?v=kPPr57pW7z" />
+  <link
+    rel="apple-touch-icon"
+    sizes="76x76"
+    href="https://ordini.pieroni.it/apple-touch-icon-76x76.png?v=kPPr57pW7z" />
+  <link
+    rel="apple-touch-icon"
+    sizes="114x114"
+    href="https://ordini.pieroni.it/apple-touch-icon-114x114.png?v=kPPr57pW7z" />
+  <link
+    rel="apple-touch-icon"
+    sizes="120x120"
+    href="https://ordini.pieroni.it/apple-touch-icon-120x120.png?v=kPPr57pW7z" />
+  <link
+    rel="apple-touch-icon"
+    sizes="144x144"
+    href="https://ordini.pieroni.it/apple-touch-icon-144x144.png?v=kPPr57pW7z" />
+  <link
+    rel="apple-touch-icon"
+    sizes="152x152"
+    href="https://ordini.pieroni.it/apple-touch-icon-152x152.png?v=kPPr57pW7z" />
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="https://ordini.pieroni.it/apple-touch-icon-180x180.png?v=kPPr57pW7z" />
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://ordini.pieroni.it/favicon-32x32.png?v=kPPr57pW7z"
+    sizes="32x32" />
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://ordini.pieroni.it/favicon-194x194.png?v=kPPr57pW7z"
+    sizes="194x194" />
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://ordini.pieroni.it/favicon-96x96.png?v=kPPr57pW7z"
+    sizes="96x96" />
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://ordini.pieroni.it/android-chrome-192x192.png?v=kPPr57pW7z"
+    sizes="192x192" />
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://ordini.pieroni.it/favicon-16x16.png?v=kPPr57pW7z"
+    sizes="16x16" />
+  <link
+    rel="manifest"
+    href="https://ordini.pieroni.it/manifest.json?v=kPPr57pW7z" />
+  <link
+    rel="mask-icon"
+    href="https://ordini.pieroni.it/safari-pinned-tab.svg?v=kPPr57pW7z"
+    color="#ee8900" />
+  <link
+    rel="shortcut icon"
+    href="https://ordini.pieroni.it/favicon.ico?v=kPPr57pW7z" />
+  <meta name="apple-mobile-web-app-title" content="Pieroni srl" />
+  <meta name="application-name" content="Pieroni srl" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta
+    name="msapplication-TileImage"
+    content="https://ordini.pieroni.it/mstile-144x144.png?v=kPPr57pW7z" />
+  <meta name="theme-color" content="#ffffff" />
+  <!--[if IE]>
+    <link rel="shortcut icon" href="https://ordini.pieroni.it/favicon.ico">
+  <![endif]-->
+  <meta name="msapplication-TileColor" content="#f01d4f" />
+  <meta name="theme-color" content="#0065A1" />
+</svelte:head>
+
 <main class={data && data.righe ? 'order-open' : ''}>
   <Header />
   <section class="form-container">
