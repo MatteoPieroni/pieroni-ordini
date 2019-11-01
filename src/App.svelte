@@ -142,9 +142,6 @@
     href="https://ordini.pieroni.it/favicon-16x16.png?v=kPPr57pW7z"
     sizes="16x16" />
   <link
-    rel="manifest"
-    href="https://ordini.pieroni.it/manifest.json?v=kPPr57pW7z" />
-  <link
     rel="mask-icon"
     href="https://ordini.pieroni.it/safari-pinned-tab.svg?v=kPPr57pW7z"
     color="#ee8900" />
